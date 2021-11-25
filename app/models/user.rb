@@ -25,8 +25,8 @@ class User < ApplicationRecord
         class_name: :Like
 
    #has_many_through 
-   has_many :liked_chirps,
-   through: :likes,
-   source: :chirp
+    has_many :liked_chirps,
+        through: :likes,
+        source: :chirp
     
 end 

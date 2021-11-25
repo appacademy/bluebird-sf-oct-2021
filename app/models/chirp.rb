@@ -20,13 +20,13 @@ class Chirp < ApplicationRecord
         class_name: :User
         
     has_many :likes,
-    primary_key: :id,
-    foreign_key: :chirp_id,
-    class_name: :Like
+        primary_key: :id,
+        foreign_key: :chirp_id,
+        class_name: :Like
 
     has_many :likers,
-    through: :likes,
-    source: :liker
+        through: :likes,
+        source: :liker
 
     def body_too_long
         if body && body.length > 140
