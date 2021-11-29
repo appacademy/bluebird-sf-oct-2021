@@ -40,17 +40,25 @@ class Chirp < ApplicationRecord
     # __________________________________________________________________________
 
     #Find all chirps for a particular user
+    # User.find_by(username: 'wakka_wakka').chirps
+    # Chirp.joins(:author).where(users: { username: 'wakka_wakka' })
+    # Chirp.joins(:author).where("users.username = 'wakka_wakka'")
 
     #Find all chirps liked by people politically affiliated with JavaScript
-
+    # Chirp.joins(:likers).where(users: {political_affiliation: 'JavaScript' })
     #Get only the unique values from the previous query
+    # Chirp.joins(:likers).where(users: {political_affiliation: 'JavaScript' }).distinct
+    # Chirp.joins(:likers).where(users: {political_affiliation: 'JavaScript' }).group(:id)
 
     #Find all chirps with no likes
+    # Chirp.left_outer_joins(:likes).where(likes: { id: nil })
 
     #Find how many likes each chirp has
+    # Chirp.select(:id, :body, "COUNT(*) AS num_likes").joins(:likes).group(:id)
 
     #Find chirps with at least 3 likes
-
+    # Chirp.joins(:likes).select(:body).group(:id).having("COUNT(*) >= ?", 3)
+    # Chirp.joins(:likes).group(:id).having("COUNT(*) >= ?", 3).pluck(:id)
 
 
 
