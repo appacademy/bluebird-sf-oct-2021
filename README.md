@@ -1,24 +1,17 @@
-# README
+# Blue Bird
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### SF-October-2021 App Academy Cohort
 
-Things you may want to cover:
+![blue-bird](https://media.giphy.com/media/3oKIPmJonGimU9bI2s/giphy.gif)
 
-* Ruby version
+##### W5D3 (Models and Migrations)
 
-* System dependencies
++ Added bare bones migration files for Users, Chirps, and Likes
++ Added basic model validations, associations and custom validations for the above tables
 
-* Configuration
+##### W6D1 (Active Record Querying)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
++ Updated users schema to accept political_affiliation and age
++ Added seed data
++ Demo'd Active Record and N+1 Querying
+  - Active Record and N+1 Queries can be found in User.rb and Chirp.rb. 
