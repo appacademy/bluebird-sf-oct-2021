@@ -11,7 +11,8 @@
 #  age        :integer
 #
 class User < ApplicationRecord
-    validates :username, :email, presence: true, uniqueness: true 
+    validates :username, :email, presence: true, uniqueness: true
+    validates :age, presence: true 
     
 
     has_many :chirps,
@@ -65,6 +66,6 @@ class User < ApplicationRecord
     # User.select(:political_affiliation).distinct
 
     #Find all users who has a political affiliation in this list and order by ascending
-    political_affiliations = ["Ruby", "C"]
-    User.where(political_affiliation: political_affiliations).order(username: :asc)
+    # political_affiliations = ["Ruby", "C"]
+    # User.where(political_affiliation: political_affiliations).order(username: :asc)
 end 

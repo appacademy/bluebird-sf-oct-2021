@@ -1,7 +1,6 @@
 class ChirpsController < ApplicationController
 
-    def index 
-        debugger
+    def index
         if params[:user_id]
             chirps = Chirp.where(author_id: params[:user_id])
         else 

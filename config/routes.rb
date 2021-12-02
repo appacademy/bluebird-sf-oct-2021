@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # HTTP VERB path to: name of controller#name of method in controller
   # get '/users', to: 'users#index'
 
-  resources :users, only:[:create, :destroy, :show, :update, :index] do 
+  resources :users do 
     resources :chirps, only:[:index]
   end 
  
