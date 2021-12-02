@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
     def index
+        debugger
         users = User.all 
+        debugger
         render json: users
     end 
     
