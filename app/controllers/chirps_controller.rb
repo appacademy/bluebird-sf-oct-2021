@@ -9,4 +9,6 @@ class ChirpsController < ApplicationController
         render json: chirps
     end 
 
+    
+
 end

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy] do 
     resources :chirps, only:[:index]
   end 
+  # resources :users do 
+  #   resources :chirps, only:[:index]
+  # end 
  
   # resources :chirps, only:[:index]
  

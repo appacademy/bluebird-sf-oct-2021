@@ -31,6 +31,11 @@ class User < ApplicationRecord
         source: :chirp
     
 
+    def self.my_all
+        users = User.all
+        return users
+    end
+
     # Active Record Queries
     # __________________________________________________________________________
     

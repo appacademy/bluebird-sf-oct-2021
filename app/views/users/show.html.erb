@@ -1,0 +1,6 @@
+<%= render 'user', user: @user, action: :from_show_page %>
+<li><a href="<%= edit_user_url %>">Edit User</a></li>
+<form action="<%= user_url(@user.id) %>" method="POST">
+    <input type='hidden', name="_method" value="DELETE">
+    <input type='submit' value="Delete User">
+</form>
