@@ -2,18 +2,28 @@
 #
 # Table name: users
 #
-#  id         :bigint           not null, primary key
-#  username   :string           not null
-#  email      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  name       :string           not null
-#  age        :integer
+#  id                    :bigint           not null, primary key
+#  username              :string           not null
+#  email                 :string           not null
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  political_affiliation :string
+#  name                  :string
+#  age                   :integer          not null
+#  password_digest       :string           not null
+#  session_token         :string           not null
 #
+
+# rails is automatically creating getters and setters for the column attributes
+
 class User < ApplicationRecord
-    validates :username, :email, presence: true, uniqueness: true
-    validates :age, presence: true 
-    
+    validates :username, :email, :session_token, presence: true, uniqueness: true
+    validates :age, presence: true
+    validates :password_digest, presence: true
+    validates :password, length: { minimum: 6 }, allow_nil: true 
+    attr_reader :password #we manually create bc pw is not a column in the db
+    after_initialize :ensure_session_token #will run after user.new so the user can have a session_token
+    # before_validation will run when .save is called
 
     has_many :chirps,
         primary_key: :id,
@@ -35,6 +45,37 @@ class User < ApplicationRecord
         users = User.all
         return users
     end
+
+    def password=(password) #this function hashes our pw with a salt
+      # why self.? => OOP => calling on the instance of the class
+      self.password_digest = BCrypt::Password.create(password)
+      @password = password
+    end
+
+    def ensure_session_token # generating a random string that will be our session token
+      self.session_token ||= SecureRandom::urlsafe_base64
+    end
+
+    def is_password?(password)
+      password_object = BCrypt::Password.new(password_digest) #takes our pw digest string and parses it into salt and hash value (bcrypt object)
+      password_object.is_password?(password) #checks given pw bcrypt obj against true pw bcrypt obj
+    end
+
+    def self.find_by_credentials(username, password)
+      user = User.find_by(username: username)
+      if user && user.is_password?(password)
+        user
+      else
+        nil
+      end
+    end
+
+    def reset_session_token! # the bang indicates we're making a change in the db
+      self.session_token = SecureRandom::urlsafe_base64
+      self.save
+      self.session_token
+    end 
+
 
     # Active Record Queries
     # __________________________________________________________________________

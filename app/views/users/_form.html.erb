@@ -7,6 +7,7 @@
 <% end %>
 
 
+
 <form action="<%= action_url %>" method="POST">
     <% if type == :edit_user_form %>
         <input type="hidden" name="_method" value="PATCH">
@@ -33,5 +34,10 @@
         >
     </label>
     <br>
+    <% if type == :new_user_form %>
+      <label>Password:
+        <input type="password" name="user[password]" value="">
+      </label>
+    <% end %>
     <input type="submit" value="<%= button_text %>">
 </form>

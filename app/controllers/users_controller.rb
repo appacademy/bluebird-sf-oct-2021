@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  before_action :require_logged_out, only: [:new, :create]
+  before_action :require_logged_in, only: [:index, :show, :edit, :update, :destroy]
+
     def index
         @users = User.my_all 
         # debugger
@@ -20,9 +23,10 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        debugger
+        # debugger
         if @user.save
-            debugger
+            # debugger
+            login(@user)
             redirect_to user_url(@user.id)
         else
             render json: @user.errors.full_messages, status: 422 
@@ -36,7 +40,7 @@ class UsersController < ApplicationController
 
     def update
         user = User.find(params[:id])
-        redirect_to user_url if user.update(user_params)
+        redirect_to user_url if user.update!(user_params)
     end 
 
     def destroy
@@ -47,7 +51,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params 
-        params.require(:user).permit(:username, :email, :age, :name)
+        params.require(:user).permit(:username, :email, :age, :name, :password)
     end
 
 
