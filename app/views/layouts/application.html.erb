@@ -11,17 +11,31 @@
 
   <body>
 
-  <% if logged_in? %>
-    <h2>Welcome, <%= current_user.username %>!!!</h2>
-    <form action="<%= session_url %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE"/>
-      <input type="submit" value="Log Out"/>
-    </form>
-  <% else %>
-    <a href="<%= new_user_url %>">Sign Up!</a>
-    <a href="<%= new_session_url %>">Log In!</a>
-  <% end %>
+    <% if logged_in? %>
+		<h2>Welcome, <%= current_user.username %>!!!</h2>
+		<form action="<%= session_url %>" method="POST">
+			<%= auth_token %>
+			<input type="hidden" name="_method" value="DELETE"/>
+			<input type="submit" value="Log Out"/>
+		</form>
+    <% else %>
+		<a href="<%= new_user_url %>">Sign Up!</a>
+		<a href="<%= new_session_url %>">Log In!</a>
+    <% end %>
+
     <%= yield %>
+
+	<% if flash[:errors] %>
+		<% flash[:errors].each do |error| %>
+			<%= error %>
+		<% end %>
+	<% end %>
+
+	<% if flash[:messages] %>
+		<% flash[:messages].each do |message| %>
+			<%= message %>
+		<% end %>
+	<% end %>
   </body>
   
 </html>

@@ -6,12 +6,12 @@
     <% button_text = "Update User"%>
 <% end %>
 
-
-
 <form action="<%= action_url %>" method="POST">
     <% if type == :edit_user_form %>
         <input type="hidden" name="_method" value="PATCH">
     <% end %>
+
+    <%= auth_token %>
 
     <label>Username: 
         <input type="text" 

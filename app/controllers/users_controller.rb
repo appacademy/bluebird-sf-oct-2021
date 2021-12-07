@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :require_logged_out, only: [:new, :create]
   before_action :require_logged_in, only: [:index, :show, :edit, :update, :destroy]
 
@@ -26,10 +25,12 @@ class UsersController < ApplicationController
         # debugger
         if @user.save
             # debugger
-            login(@user)
+            login!(@user)
             redirect_to user_url(@user.id)
         else
-            render json: @user.errors.full_messages, status: 422 
+            # need to handle errors when user is not successfully created
+            flash.now[:errors] = @user.errors.full_messages
+            render :new
         end
     end 
 
