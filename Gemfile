@@ -53,14 +53,24 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # Added for testing
+  gem 'rspec-rails' # the rails version of rspec
+  gem 'factory_bot_rails' # factory_bot allows us to automatically create models and place them into our test DB
+  gem 'rails-controller-testing' # Gives us some cool methods to help our testing 
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # Added for testing
+  gem 'faker' # Allows us to seed our DB with fake info really easily.  Faker is super useful for seeding mundane information.
+  gem 'capybara' # Specifically for integration testing #included in the default Gemfile but point it out to the students 
+  gem 'guard-rspec' # let's you auto-run specs when files are modified
+  gem 'launchy' # automatically opens the page in the browser when we use save_and_open_page
+  gem 'shoulda-matchers' # gives us some great one liner syntax for testing  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
