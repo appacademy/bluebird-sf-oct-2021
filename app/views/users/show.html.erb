@@ -1,6 +1,12 @@
 <%= render 'user', user: @user, action: :from_show_page %>
 <li><a href="<%= edit_user_url %>">Edit User</a></li>
 <form action="<%= user_url(@user.id) %>" method="POST">
+  <%= auth_token %>
     <input type='hidden', name="_method" value="DELETE">
     <input type='submit' value="Delete User">
+</form>
+
+<form action=<%= new_chirp_url %> method="GET">
+  <%= auth_token %>
+  <input type='submit' value="Create Chirp">
 </form>

@@ -1,0 +1,12 @@
+<h3>This is the partial</h3>
+
+<li>Body: <%= chirp.body %></li>
+<li>Author: <%= chirp.author.username %></li>
+<li>Number of Likes: <%= chirp.likes.count %></li>
+<% if form == :show %>
+<%#= a tags = default get requests  %>
+  <a href="<%= chirps_url %>">Back to the index!</a>
+<% else %>
+<%# chirp arg in the url refers to the chirp we are iterating over in our index template/view  %>
+  <a href="<%= chirp_url(chirp) %>">Look at this chirp!</a>
+<% end %>
