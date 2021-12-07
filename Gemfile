@@ -42,6 +42,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  
+  # Added for testing
+  gem 'rspec-rails' # the rails version of rspec
+  gem 'factory_bot_rails' # factory_bot allows us to automatically create models and place them into our test DB
+  gem 'rails-controller-testing' # Gives us some cool methods to help our testing 
 end
 
 group :development do
@@ -53,10 +58,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
-  # Added for testing
-  gem 'rspec-rails' # the rails version of rspec
-  gem 'factory_bot_rails' # factory_bot allows us to automatically create models and place them into our test DB
-  gem 'rails-controller-testing' # Gives us some cool methods to help our testing 
 end
 
 group :test do
