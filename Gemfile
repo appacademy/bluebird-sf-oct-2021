@@ -65,7 +65,8 @@ group :test do
   # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
+  gem 'webdrivers'
   # Added for testing
   gem 'faker' # Allows us to seed our DB with fake info really easily.  Faker is super useful for seeding mundane information.
   gem 'capybara' # Specifically for integration testing #included in the default Gemfile but point it out to the students 

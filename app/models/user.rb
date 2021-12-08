@@ -17,6 +17,9 @@
 # rails is automatically creating getters and setters for the column attributes
 
 class User < ApplicationRecord
+    #  validates :username, :email, :session_token, presence: true
+    #  validates :username, uniqueness: true
+
     validates :username, :email, :session_token, presence: true, uniqueness: true
     validates :age, presence: true
     validates :password_digest, presence: true

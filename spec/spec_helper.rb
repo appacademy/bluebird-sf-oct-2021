@@ -93,4 +93,18 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  def log_in_user(user)
+    visit new_session_url
+    fill_in('username', with: "#{user.username}")
+    fill_in('password', with: 'starwars')
+    click_button('Log In')
+  end
+
+  def make_chirp(body)
+    visit new_chirp_url
+    fill_in('Body', with: "#{body}")
+    click_button('Create chirp')
+  end
+
 end
