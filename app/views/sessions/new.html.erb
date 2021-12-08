@@ -3,11 +3,11 @@
 <form action="<%= session_url %>" method="POST">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 <label>Username:
-<input type="text" name="user[username]" value="<%= @user ? @user.username : "" %>">
+<input id="username" type="text" name="user[username]" value="<%= @user ? @user.username : "" %>">
 </label>
 <br>
 <label>Password:
-<input type="password" name="user[password]" value="">
+<input id="password" type="password" name="user[password]" value="">
 </label>
   <br>
   <input type="submit" value="Log In">
