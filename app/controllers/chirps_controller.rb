@@ -31,6 +31,12 @@ class ChirpsController < ApplicationController
 		render :new
     end
 
+	def destroy
+        @chirp = Chirp.find(params[:id])
+        @chirp.destroy
+        redirect_to chirps_url
+    end
+
     private
     def chirp_params
       	params.require(:chirp).permit(:body)

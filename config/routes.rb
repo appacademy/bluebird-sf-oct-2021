@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   #   resources :chirps, only:[:index]
   # end 
  
-  resources :chirps, only:[:index, :new, :create, :show]
+  resources :chirps, only:[:index, :new, :create, :show, :destroy]
  
 end
