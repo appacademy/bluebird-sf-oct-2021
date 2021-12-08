@@ -1,4 +1,5 @@
 class ChirpsController < ApplicationController
+	before_action :require_logged_in, only: [:new, :create]
 
     def index
 		if params[:user_id]
@@ -17,6 +18,7 @@ class ChirpsController < ApplicationController
 		if @chirp.save
 			redirect_to chirp_url(@chirp)
 		else
+			flash.now[:errors] = @chirp.errors.full_messages
 			render :new, status: 422
 		end
     end 
@@ -29,6 +31,12 @@ class ChirpsController < ApplicationController
     def new
 		@chirp = Chirp.new
 		render :new
+    end
+
+	def destroy
+        @chirp = Chirp.find(params[:id])
+        @chirp.destroy
+        redirect_to chirps_url
     end
 
     private
