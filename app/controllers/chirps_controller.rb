@@ -18,6 +18,7 @@ class ChirpsController < ApplicationController
 		if @chirp.save
 			redirect_to chirp_url(@chirp)
 		else
+			flash.now[:errors] = @chirp.errors.full_messages
 			render :new, status: 422
 		end
     end 
